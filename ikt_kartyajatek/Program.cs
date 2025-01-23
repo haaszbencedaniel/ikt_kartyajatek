@@ -35,7 +35,36 @@ List<string> Kiiras(List<int> asd)
 
     for (int i = 0; i < asd.Count; i++)
     {
-        
+        switch (asd[i])
+        {
+            case 1: ideiglenes.Add(".------.\r\n|1.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'1|\r\n`------'"); break;
+            case 2: ideiglenes.Add(".------.\r\n|2.--. |\r\n| (\\/) |\r\n| :\\/: |\r\n| '--'2|\r\n`------'"); break;
+            case 3: ideiglenes.Add(".------.\r\n|3.--. |\r\n| :(): |\r\n| ()() |\r\n| '--'3|\r\n`------'"); break;
+            case 4: ideiglenes.Add(".------.\r\n|4.--. |\r\n| :/\\: |\r\n| :\\/: |\r\n| '--'4|\r\n`------'"); break;
+            case 5: ideiglenes.Add(".------.\r\n|5.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'5|\r\n`------'"); break;
+            case 6: ideiglenes.Add(".------.\r\n|6.--. |\r\n| (\\/) |\r\n| :\\/: |\r\n| '--'6|\r\n`------'"); break;
+            case 7: ideiglenes.Add(".------.\r\n|7.--. |\r\n| :(): |\r\n| ()() |\r\n| '--'7|\r\n`------'"); break;
+            case 8: ideiglenes.Add(".------.\r\n|8.--. |\r\n| :/\\: |\r\n| :\\/: |\r\n| '--'8|\r\n`------'"); break;
+            case 9: ideiglenes.Add(".------.\r\n|9.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'9|\r\n`------'"); break;
+            case 10:
+                if (eldontes == 0)
+                {
+                    ideiglenes.Add(".------.\r\n|10--. |\r\n| :||: |\r\n| |__| |\r\n| '--10|\r\n`------'");
+                }
+                else if (eldontes == 1)
+                {
+                    ideiglenes.Add(".------.\r\n|Q.--. |\r\n| :/\\: |\r\n| :\\/: |\r\n| '--'Q|\r\n`------'");
+                }
+                else if (eldontes == 2)
+                {
+                    ideiglenes.Add(".------.\r\n|K.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'K|\r\n`------'");
+                }
+                else
+                {
+                    ideiglenes.Add(".------.\r\n|J.--. |\r\n| :||: |\r\n| |__| |\r\n| '--'J|\r\n`------'");
+                }
+                break;
+        }
     }
     return ideiglenes;
 }
