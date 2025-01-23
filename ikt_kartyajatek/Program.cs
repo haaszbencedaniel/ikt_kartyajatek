@@ -26,3 +26,16 @@ void kartyahuzas(List<int> asd)
         case 10: asd.Add(10); break;
     }
 }
+
+List<string> Kiiras(List<int> asd)
+{
+    List<string> ideiglenes = new List<string>();
+
+    int eldontes = random.Next(0, 4);
+
+    for (int i = 0; i < asd.Count; i++)
+    {
+        
+    }
+    return ideiglenes;
+}
