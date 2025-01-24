@@ -24,36 +24,20 @@ Console.WriteLine("A lapjaid: ");
 
 Console.Write(string.Join("\r\n", Kiiras(jatekos_kartyak)));
 
-void kartyahuzas(List<int> asd)
+jatekMenet();
+
+void kartyahuzas(List<int> kartyak)
 {
-    int huzas = random.Next(1,11);
-
-    int eldontes = random.Next(0,4);
-
-    switch (huzas)
-    {
-        case 1: asd.Add(1); break;
-        case 2: asd.Add(2); break;
-        case 3: asd.Add(3); break;
-        case 4: asd.Add(4); break;
-        case 5: asd.Add(5); break;
-        case 6: asd.Add(6); break;
-        case 7: asd.Add(7); break;
-        case 8: asd.Add(8); break;
-        case 9: asd.Add(9); break;
-        case 10: asd.Add(10); break;
-    }
+    int huzas = random.Next(1, 11);
+    kartyak.Add(huzas);
 }
 
-List<string> Kiiras(List<int> asd)
+List<string> Kiiras(List<int> kartyak)
 {
     List<string> ideiglenes = new List<string>();
-
-    int eldontes = random.Next(0, 4);
-
-    for (int i = 0; i < asd.Count; i++)
+    foreach (int kartya in kartyak)
     {
-        switch (asd[i])
+        switch (kartya)
         {
             case 1: ideiglenes.Add(".------.\r\n|1.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'1|\r\n`------'"); break;
             case 2: ideiglenes.Add(".------.\r\n|2.--. |\r\n| (\\/) |\r\n| :\\/: |\r\n| '--'2|\r\n`------'"); break;
@@ -64,25 +48,99 @@ List<string> Kiiras(List<int> asd)
             case 7: ideiglenes.Add(".------.\r\n|7.--. |\r\n| :(): |\r\n| ()() |\r\n| '--'7|\r\n`------'"); break;
             case 8: ideiglenes.Add(".------.\r\n|8.--. |\r\n| :/\\: |\r\n| :\\/: |\r\n| '--'8|\r\n`------'"); break;
             case 9: ideiglenes.Add(".------.\r\n|9.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'9|\r\n`------'"); break;
-            case 10:
-                if (eldontes == 0)
-                {
-                    ideiglenes.Add(".------.\r\n|10--. |\r\n| :||: |\r\n| |__| |\r\n| '--10|\r\n`------'");
-                }
-                else if (eldontes == 1)
-                {
-                    ideiglenes.Add(".------.\r\n|Q.--. |\r\n| :/\\: |\r\n| :\\/: |\r\n| '--'Q|\r\n`------'");
-                }
-                else if (eldontes == 2)
-                {
-                    ideiglenes.Add(".------.\r\n|K.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'K|\r\n`------'");
-                }
-                else
-                {
-                    ideiglenes.Add(".------.\r\n|J.--. |\r\n| :||: |\r\n| |__| |\r\n| '--'J|\r\n`------'");
-                }
-                break;
+            case 10: ideiglenes.Add(".------.\r\n|K.--. |\r\n| :/\\: |\r\n| (__) |\r\n| '--'K|\r\n`------'"); break;
         }
     }
     return ideiglenes;
 }
+
+int kartyaErtekek(List<int> kartyak)
+{
+    int ertek = 0;
+    foreach (int kartya in kartyak)
+    {
+        ertek += kartya;
+    }
+    return ertek;
+}
+
+void jatekMenet()
+{
+    string bekeres;
+    bool jatekFut = true;
+
+    while (jatekFut)
+    {
+        Console.WriteLine("\r\n");
+        Console.Write("Hit or Stand: ");
+        bekeres = Console.ReadLine()!.ToLower();
+
+        if (bekeres == "hit")
+        {
+            kartyahuzas(jatekos_kartyak);
+            FrissitKonzol(false); // Az asztal lapjait nem frissítjük minden körben
+            if (kartyaErtekek(jatekos_kartyak) > 21)
+            {
+                jatekFut = false;
+                break;
+            }
+        }
+        else if (bekeres == "stand")
+        {
+            while (kartyaErtekek(asztal_kartyak) < 17)
+            {
+                kartyahuzas(asztal_kartyak);
+            }
+            FrissitKonzol(true); // Végén az asztal lapjait is megmutatjuk
+            jatekFut = false;
+        }
+    }
+
+    KiErtekel();
+}
+
+void FrissitKonzol(bool asztaltIsMutat)
+{
+    Console.Clear();
+    if (asztaltIsMutat)
+    {
+        Console.WriteLine("Az asztal lapjai: ");
+        Console.Write(string.Join("\r\n", Kiiras(asztal_kartyak)));
+        Console.WriteLine();
+    }
+    Console.WriteLine("A lapjaid: ");
+    Console.Write(string.Join("\r\n", Kiiras(jatekos_kartyak)));
+}
+
+void KiErtekel()
+{
+    int jatekosErtek = kartyaErtekek(jatekos_kartyak);
+    int asztalErtek = kartyaErtekek(asztal_kartyak);
+
+    Console.WriteLine("\r\n");
+
+    if (jatekosErtek > 21)
+    {
+        Console.WriteLine("A játékos túllépte a 21-et!\r\n");
+        Console.WriteLine(".____                        \r\n|    |    ____  ______ ____  \r\n|    |   /  _ \\/  ___// __ \\ \r\n|    |__(  <_> )___ \\\\  ___/ \r\n|_______ \\____/____  >\\___  >\r\n        \\/         \\/     \\/");
+    }
+    else if (asztalErtek > 21)
+    {
+        Console.WriteLine("Az asztal túllépte a 21-et!\r\n");
+        Console.WriteLine(" __      __.__        \r\n/  \\    /  \\__| ____  \r\n\\   \\/\\/   /  |/    \\ \r\n \\        /|  |   |  \\\r\n  \\__/\\  / |__|___|  /\r\n       \\/          \\/ ");
+    }
+    else if (jatekosErtek > asztalErtek)
+    {
+        Console.WriteLine(" __      __.__        \r\n/  \\    /  \\__| ____  \r\n\\   \\/\\/   /  |/    \\ \r\n \\        /|  |   |  \\\r\n  \\__/\\  / |__|___|  /\r\n       \\/          \\/ ");
+    }
+    else if (jatekosErtek < asztalErtek)
+    {
+        Console.WriteLine(".____                        \r\n|    |    ____  ______ ____  \r\n|    |   /  _ \\/  ___// __ \\ \r\n|    |__(  <_> )___ \\\\  ___/ \r\n|_______ \\____/____  >\\___  >\r\n        \\/         \\/     \\/");
+    }
+    else
+    {
+        Console.WriteLine("________ __________    _____  __      __ \r\n\\______ \\\\______   \\  /  _  \\/  \\    /  \\\r\n |    |  \\|       _/ /  /_\\  \\   \\/\\/   /\r\n |    `   \\    |   \\/    |    \\        / \r\n/_______  /____|_  /\\____|__  /\\__/\\  /  \r\n        \\/       \\/         \\/      \\/   ");
+    }
+}
+
+
