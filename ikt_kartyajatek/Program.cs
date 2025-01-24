@@ -6,6 +6,24 @@ List<int> jatekos_kartyak = new List<int>();
 
 List<int> asztal_kartyak = new List<int>();
 
+Console.WriteLine("__________.__                 __        ____.              __    \r\n\\______   \\  | _____    ____ |  | __   |    |____    ____ |  | __\r\n |    |  _/  | \\__  \\ _/ ___\\|  |/ /   |    \\__  \\ _/ ___\\|  |/ /\r\n |    |   \\  |__/ __ \\\\  \\___|    </\\__|    |/ __ \\\\  \\___|    < \r\n |______  /____(____  /\\___  >__|_ \\________(____  /\\___  >__|_ \\\r\n        \\/          \\/     \\/     \\/             \\/     \\/     \\/");
+
+kartyahuzas(asztal_kartyak);
+
+kartyahuzas(jatekos_kartyak);
+
+kartyahuzas(jatekos_kartyak);
+
+Console.WriteLine("Az asztal lapjai: ");
+
+Console.Write(string.Join("\r\n", Kiiras(asztal_kartyak)));
+
+Console.WriteLine();
+
+Console.WriteLine("A lapjaid: ");
+
+Console.Write(string.Join("\r\n", Kiiras(jatekos_kartyak)));
+
 void kartyahuzas(List<int> asd)
 {
     int huzas = random.Next(1,11);
