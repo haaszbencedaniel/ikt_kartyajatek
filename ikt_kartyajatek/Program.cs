@@ -78,7 +78,7 @@ void jatekMenet()
         if (bekeres == "hit")
         {
             kartyahuzas(jatekos_kartyak);
-            FrissitKonzol(false); // Az asztal lapjait nem frissítjük minden körben
+            FrissitKonzol(false); 
             if (kartyaErtekek(jatekos_kartyak) > 21)
             {
                 jatekFut = false;
@@ -91,7 +91,7 @@ void jatekMenet()
             {
                 kartyahuzas(asztal_kartyak);
             }
-            FrissitKonzol(true); // Végén az asztal lapjait is megmutatjuk
+            FrissitKonzol(true);
             jatekFut = false;
         }
     }
