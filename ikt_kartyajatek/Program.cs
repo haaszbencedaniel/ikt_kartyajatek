@@ -8,11 +8,11 @@ List<int> asztal_kartyak = new List<int>();
 
 Console.WriteLine("__________.__                 __        ____.              __    \r\n\\______   \\  | _____    ____ |  | __   |    |____    ____ |  | __\r\n |    |  _/  | \\__  \\ _/ ___\\|  |/ /   |    \\__  \\ _/ ___\\|  |/ /\r\n |    |   \\  |__/ __ \\\\  \\___|    </\\__|    |/ __ \\\\  \\___|    < \r\n |______  /____(____  /\\___  >__|_ \\________(____  /\\___  >__|_ \\\r\n        \\/          \\/     \\/     \\/             \\/     \\/     \\/");
 
-kartyahuzas(asztal_kartyak);
+KartyaHuzas(asztal_kartyak);
 
-kartyahuzas(jatekos_kartyak);
+KartyaHuzas(jatekos_kartyak);
 
-kartyahuzas(jatekos_kartyak);
+KartyaHuzas(jatekos_kartyak);
 
 Console.WriteLine("Az asztal lapjai: ");
 
@@ -26,7 +26,7 @@ Console.Write(string.Join("\r\n", Kiiras(jatekos_kartyak)));
 
 jatekMenet();
 
-void kartyahuzas(List<int> kartyak)
+void KartyaHuzas(List<int> kartyak)
 {
     int huzas = random.Next(1, 11);
     kartyak.Add(huzas);
@@ -54,7 +54,7 @@ List<string> Kiiras(List<int> kartyak)
     return ideiglenes;
 }
 
-int kartyaErtekek(List<int> kartyak)
+int KartyaErtekek(List<int> kartyak)
 {
     int ertek = 0;
     foreach (int kartya in kartyak)
@@ -77,9 +77,9 @@ void jatekMenet()
 
         if (bekeres == "hit")
         {
-            kartyahuzas(jatekos_kartyak);
+            KartyaHuzas(jatekos_kartyak);
             FrissitKonzol(false); 
-            if (kartyaErtekek(jatekos_kartyak) > 21)
+            if (KartyaErtekek(jatekos_kartyak) > 21)
             {
                 jatekFut = false;
                 break;
@@ -87,9 +87,9 @@ void jatekMenet()
         }
         else if (bekeres == "stand")
         {
-            while (kartyaErtekek(asztal_kartyak) < 17)
+            while (KartyaErtekek(asztal_kartyak) < 17)
             {
-                kartyahuzas(asztal_kartyak);
+                KartyaHuzas(asztal_kartyak);
             }
             FrissitKonzol(true);
             jatekFut = false;
@@ -114,8 +114,8 @@ void FrissitKonzol(bool asztaltIsMutat)
 
 void KiErtekel()
 {
-    int jatekosErtek = kartyaErtekek(jatekos_kartyak);
-    int asztalErtek = kartyaErtekek(asztal_kartyak);
+    int jatekosErtek = KartyaErtekek(jatekos_kartyak);
+    int asztalErtek = KartyaErtekek(asztal_kartyak);
 
     Console.WriteLine("\r\n");
 
